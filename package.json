@@ -1,0 +1,36 @@
+{
+  "name": "code2video-web",
+  "private": true,
+  "version": "1.0.0",
+  "workspaces": ["client", "server"],
+  "scripts": {
+    "dev": "concurrently -k -n client,server -c blue,green \"npm:dev:client\" \"npm:dev:server\"",
+    "dev:client": "npm --workspace client run dev",
+    "dev:server": "npm --workspace server run dev",
+    "build": "npm run build:client && npm run build:server",
+    "build:client": "npm --workspace client run build",
+    "build:server": "npm --workspace server run build",
+    "start": "npm --workspace server run start",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "vitest run",
+    "test:e2e": "playwright test tests/e2e",
+    "test:all": "npm test && npm run test:e2e"
+  },
+  "engines": {
+    "node": ">=20.19.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.37.0",
+    "@playwright/test": "1.63.0",
+    "@types/node": "^24.7.2",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.37.0",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.0",
+    "vitest": "^3.2.4"
+  }
+}
